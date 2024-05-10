@@ -43,7 +43,7 @@ export const App = () => {
                   <button onClick={() => onClickDelete(index)}>削除</button>
                 </div>
               </li>
-            ))};
+            ))}
         </ul>
       </div>
       <div className='complete-area'>
