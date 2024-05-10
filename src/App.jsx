@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { InputArea } from './components/InputArea';
 import { IncompleteTodos } from './components/IncompleteTodos';
+import { CompleteTodos } from './components/CompleteTodos';
 
 import './App.css';
-
 
 export const App = () => {
   const [text, setText] = useState("");
@@ -36,6 +36,16 @@ export const App = () => {
     setCompleteTodos(newCompleteTodos);
   };
 
+    const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+
+    setCompleteTodos(newCompleteTodos);
+    setIncompleteTodos(newIncompleteTodos);
+  };
+
   return (
     <>
       <div>
@@ -51,21 +61,10 @@ export const App = () => {
         onClickDelete={onClickDelete}
         onClickComplete={onClickComplete}
       />
-      <div className='complete-area'>
-        <p>完了したTODO</p>
-        <ul>
-          {completeTodos.map((todo) => (
-              <li>
-                <div className='list-row'>
-                  <p className='todo-item'>{todo}</p>
-                  <button>戻す</button>
-                </div>
-              </li>
-            )
-          )};
-
-        </ul>
-      </div>
+      <CompleteTodos
+        todos={completeTodos}
+        onClickBack={onClickBack}
+      />
     </>
   )
 };
