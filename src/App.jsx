@@ -3,9 +3,18 @@ import './App.css';
 
 
 export const App = () => {
+  const [text, setText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState(["未完了1", "未完了2"]);
 
   const [completeTodos, setcompleteTodos] = useState(["完了1", "完了2"]);
+
+  const onChangeText = (e) => setText(e.target.value);
+
+  const onClickAdd = () => {
+    const addTodos = [...incompleteTodos, text];
+    setIncompleteTodos(addTodos);
+    setText("");
+  };
 
   return (
     <>
@@ -13,8 +22,8 @@ export const App = () => {
         <h1>React TODO App</h1>
       </div>
       <div className="input-area">
-        <input placeHolder="TODOを入力" />
-        <button>登録</button>
+        <input placeHolder="TODOを入力" value={text} onChange={onChangeText} />
+        <button onClick={onClickAdd}>登録</button>
       </div>
       <div className='incomplete-area'>
         <p>未完了のTODO</p>
