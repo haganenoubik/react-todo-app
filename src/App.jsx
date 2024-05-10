@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { InputArea } from './components/InputArea';
 import './App.css';
 
 
@@ -33,25 +34,16 @@ export const App = () => {
     setCompleteTodos(newCompleteTodos);
   };
 
-  const onClickBack = (index) => {
-    const newCompleteTodos = [...completeTodos];
-    newCompleteTodos.splice(index, 1);
-
-    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
-
-    setCompleteTodos(newCompleteTodos);
-    setIncompleteTodos(newIncompleteTodos);
-  };
-
   return (
     <>
       <div>
         <h1>React TODO App</h1>
       </div>
-      <div className="input-area">
-        <input placeHolder="TODOを入力" value={text} onChange={onChangeText} />
-        <button onClick={onClickAdd}>登録</button>
-      </div>
+      <InputArea
+        text={text}
+        onChange={onChangeText}
+        onClickAdd={onClickAdd}
+      />
       <div className='incomplete-area'>
         <p>未完了のTODO</p>
         <ul>
@@ -69,11 +61,11 @@ export const App = () => {
       <div className='complete-area'>
         <p>完了したTODO</p>
         <ul>
-          {completeTodos.map((todo, index) => (
+          {completeTodos.map((todo) => (
               <li>
                 <div className='list-row'>
                   <p className='todo-item'>{todo}</p>
-                  <button onClick={() => onClickBack(index)}>戻す</button>
+                  <button>戻す</button>
                 </div>
               </li>
             )
