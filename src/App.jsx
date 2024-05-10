@@ -6,7 +6,7 @@ export const App = () => {
   const [text, setText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState(["未完了1", "未完了2"]);
 
-  const [completeTodos, setcompleteTodos] = useState(["完了1", "完了2"]);
+  const [completeTodos, setCompleteTodos] = useState(["完了1", "完了2"]);
 
   const onChangeText = (e) => setText(e.target.value);
 
@@ -21,6 +21,16 @@ export const App = () => {
     const deleteTodos = [...incompleteTodos];
     deleteTodos.splice(index, 1);
     setIncompleteTodos(deleteTodos);
+  };
+
+  const onClickComplete = (index) => {
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+
+    setIncompleteTodos(newIncompleteTodos);
+    setCompleteTodos(newCompleteTodos);
   };
 
   return (
@@ -39,11 +49,11 @@ export const App = () => {
               <li>
                 <div className='list-row'>
                   <p className='todo-item'>{todo}</p>
-                  <button>完了</button>
+                  <button onClick={() => onClickComplete(index)}>完了</button>
                   <button onClick={() => onClickDelete(index)}>削除</button>
                 </div>
               </li>
-            ))};
+            ))}
         </ul>
       </div>
       <div className='complete-area'>
@@ -53,8 +63,7 @@ export const App = () => {
               <li>
                 <div className='list-row'>
                   <p className='todo-item'>{todo}</p>
-                  <button>完了</button>
-                  <button>削除</button>
+                  <button>戻す</button>
                 </div>
               </li>
             )
