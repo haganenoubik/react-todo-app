@@ -7,9 +7,9 @@ import './App.css';
 
 export const App = () => {
   const [text, setText] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState(["未完了1", "未完了2"]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
 
-  const [completeTodos, setCompleteTodos] = useState(["完了1", "完了2"]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
   const onChangeText = (e) => setText(e.target.value);
 
