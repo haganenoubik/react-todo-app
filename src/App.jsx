@@ -53,8 +53,7 @@ export const App = () => {
               <li>
                 <div className='list-row'>
                   <p className='todo-item'>{todo}</p>
-                  <button>完了</button>
-                  <button>削除</button>
+                  <button>戻す</button>
                 </div>
               </li>
             )
